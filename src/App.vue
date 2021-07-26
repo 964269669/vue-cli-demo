@@ -4,9 +4,22 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+<script>
+import Name from '@/components/Name.vue'
+
+export default {
+  components: {
+    Name
+  },
+  data () {
+    return {}
+  },
+  created () {}
+}
+</script>
 
 <style lang="scss">
 #app {
