@@ -9,6 +9,8 @@
       <el-button type="warning">警告按钮</el-button>
       <el-button type="danger">危险按钮</el-button>
     </el-row>
+    <p class="text
+    ">在座的各位都是乐色~</p>
     <router-view />
   </div>
 </template>
@@ -31,4 +33,10 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// @import '~@/styles/variables.scss';
+.text {
+  color: $danger-color;
+}
+
+</style>
