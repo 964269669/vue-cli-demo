@@ -1,5 +1,5 @@
 <template>
-  <div class="advert-space">advert-space</div>
+  <div class="advert-space">广告位管理</div>
 </template>
 
 <script lang="ts">

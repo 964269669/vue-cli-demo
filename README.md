@@ -1,5 +1,5 @@
-# vue-demo
-重头创建vuecli项目，vue-cli@4.5，vue@2.6
+# edu-boss-fed
+
 ## Project setup
 ```
 npm install

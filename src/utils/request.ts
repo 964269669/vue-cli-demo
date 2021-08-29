@@ -6,7 +6,6 @@ import qs from 'qs'
 
 const request = axios.create({
   // 配置选项
-  // baseURL,
   // timeout
 })
 
@@ -19,7 +18,6 @@ function redirectLogin () {
   })
 }
 
-// 这里使用axios而没有使用request，如果使用request可能陷入死循环
 function refreshToken () {
   return axios.create()({
     method: 'POST',
@@ -49,17 +47,15 @@ request.interceptors.request.use(function (config) {
 // 响应拦截器
 let isRfreshing = false // 控制刷新 token 的状态
 let requests: any[] = [] // 存储刷新 token 期间过来的 401 请求
-request.interceptors.response.use(function (response) {
-  // 状态码为 2xx 都会进入这里
+request.interceptors.response.use(function (response) { // 状态码为 2xx 都会进入这里
+  // console.log('请求响应成功了 => ', response)
   // 如果是自定义错误状态码，错误处理就写到这里
   return response
-}, async function (error) {
-  // 超出 2xx 状态码都都执行这里
+}, async function (error) { // 超出 2xx 状态码都都执行这里
+  // console.log('请求响应失败了 => ', error)
   // 如果是使用的 HTTP 状态码，错误处理就写到这里
   // console.dir(error)
-
-  // 请求发出去收到响应了，但是状态码超出了 2xx 范围
-  if (error.response) {
+  if (error.response) { // 请求发出去收到响应了，但是状态码超出了 2xx 范围
     const { status } = error.response
     if (status === 400) {
       Message.error('请求参数错误')
@@ -89,6 +85,7 @@ request.interceptors.response.use(function (response) {
           return request(error.config)
         }).catch(err => {
           console.log(err)
+          Message.warning('登录已过期，请重新登录')
           store.commit('setUser', null)
           redirectLogin()
           return Promise.reject(error)
